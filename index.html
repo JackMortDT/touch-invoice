@@ -8,8 +8,103 @@
 </head>
 <body>
   <div id="app">
-    {{ message }}
-    <button @click="downloadXml"> Descarga </button>
+    <div class = "container">
+      <h2>Factura Electrónica</h2>
+      <br>
+      <!-------- Credenciales -------->
+      <h5> Credenciales: </h5>
+      <div class = "row">
+        <div class = "col-lg-3"> Usuario: <input v-model="invoice.credentials.user" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-3"> Password: <input v-model="invoice.credentials.password" class="form-control" placeholder=""> </div>
+      </div>
+      <hr>
+
+      <!-------- Información adicional -------->
+      <h5> Información Adicional: </h5>
+      <div class = "row">
+        <div class = "col-lg-3"> Título: <input v-model="invoice.additionalInformation.title" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Conector: <input v-model="invoice.additionalInformation.connector" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> fileType: <input v-model="invoice.additionalInformation.fileType" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Id unico: <input v-model="invoice.additionalInformation.uniqueId" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Comentario: <input v-model="invoice.additionalInformation.comment" class="form-control" placeholder=""> </div>
+      </div>
+      <hr>
+
+      <!-------- Receptor -------->
+      <h5> Receptor: </h5>
+      <div class = "row">
+        <div class = "col-lg-2"> Versión: <input v-model="invoice.receipt.version" class="form-control" placeholder="" disabled=""> </div>
+        <div class = "col-lg-2"> Serie: <input v-model="invoice.receipt.serie" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Serie: <input v-model="invoice.receipt.folio" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Fecha: <input v-model="invoice.receipt.date" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Forma de pago: <input v-model="invoice.receipt.paymentWayCode" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Subtotal: <input v-model="invoice.receipt.subTotal" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Moneda: <input v-model="invoice.receipt.currency" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Total: <input v-model="invoice.receipt.total" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Tipo de comprobante: <input v-model="invoice.receipt.typeReceiptCode" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Método de pago: <input v-model="invoice.receipt.paymentMethodCode" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Código postal: <input v-model="invoice.receipt.postCode" class="form-control" placeholder=""> </div>
+      </div>
+      <hr>
+
+      <!-------- Emisor -------->
+      <h5> Emisor: </h5>
+      <div class = "row">
+        <div class = "col-lg-3"> RFC: <input v-model="invoice.sender.rfc" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Nombre: <input v-model="invoice.sender.name" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Régimen fiscal: <input v-model="invoice.sender.taxRegimeCode" class="form-control" placeholder=""> </div>
+      </div>
+      <hr>
+
+      <!-------- Receptor -------->
+      <h5> Receptor: </h5>
+      <div class = "row">
+        <div class = "col-lg-3"> RFC: <input v-model="invoice.receiver.rfc" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-4"> Nombre: <input v-model="invoice.receiver.name" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Uso CFDI: <input v-model="invoice.receiver.cfdiCode" class="form-control" placeholder=""> </div>
+      </div>
+      <hr>
+
+      <!-------- Concepto -------->
+      <h5> Concepto: </h5>
+      <div class = "row">
+        <div class = "col-lg-3"> Clave producto servicio: <input v-model="invoice.concept.serviceCode" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Cantidad: <input v-model="invoice.concept.quantity" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Clave unidad: <input v-model="invoice.concept.unityCode" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Unidad: <input v-model="invoice.concept.unity" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-3"> Descripción: <input v-model="invoice.concept.description" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Valor unitario: <input v-model="invoice.concept.unitValue" class="form-control" placeholder=""> </div>
+        <div class = "col-lg-2"> Importe: <input v-model="invoice.concept.amount" class="form-control" placeholder=""> </div>
+      </div>
+      <hr>
+
+      <!-------- Impuestos -------->
+      <h5> Impuestos: </h5>
+      <div class = "row">
+        <div class = "col-lg-2"> Base: <input v-model="invoice.taxesConcept.baseConceptTax" class="form-control" placeholder=""></div>
+        <div class = "col-lg-2"> Impuesto: <input v-model="invoice.taxesConcept.codeConceptTax" class="form-control" placeholder=""></div>
+        <div class = "col-lg-2"> Tipo factor: <input v-model="invoice.taxesConcept.factorTypeConceptTax" class="form-control" placeholder=""></div>
+        <div class = "col-lg-2"> Tasa o cuota: <input v-model="invoice.taxesConcept.rateOrFeeConceptTax" class="form-control" placeholder=""></div>
+        <div class = "col-lg-2"> Importe: <input v-model="invoice.taxesConcept.amountConceptTax" class="form-control" placeholder=""></div>
+      </div>
+      <hr>
+
+      <!-------- Traslado -------->
+      <h5> Traslado: </h5>
+      <div class = "row">
+        <div class = "col-lg-2"> Base: <input v-model="invoice.taxes.totalTaxes" class="form-control" placeholder=""></div>
+        <div class = "col-lg-2"> Impuesto: <input v-model="invoice.taxes.taxtCode" class="form-control" placeholder=""></div>
+        <div class = "col-lg-2"> Tipo factor: <input v-model="invoice.taxes.factorType" class="form-control" placeholder=""></div>
+        <div class = "col-lg-2"> Tasa o cuota: <input v-model="invoice.taxes.rateOrFee" class="form-control" placeholder=""></div>
+        <div class = "col-lg-2"> Importe: <input v-model="invoice.taxes.amountTaxes" class="form-control" placeholder=""></div>
+      </div>
+      <hr>
+
+      <div class = "col-lg-2">
+        <button @click="downloadXml" class="btn btn-primary"> Descarga </button>
+      </div>
+
+    </div>
   </div>
 
   <script src="assets/dist/js/polyfill.min.js"></script>

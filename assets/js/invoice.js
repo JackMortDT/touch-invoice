@@ -1,12 +1,12 @@
 var credentials = {
   user: "Touch",
   password: "12345",
-  fileType: 19
 }
 
 var additionalInformation = {
   title: "título",
   connector: "connector",
+  fileType: 19,
   uniqueId: "touch123",
   comment: "Xml touch"
 }
@@ -26,8 +26,8 @@ var receipt = {
 }
 
 var sender = {
-  rfc: 'EBC840801QW6',
-  name: 'ESCUELA BANCARIA Y COMERCIAL, S.C',
+  rfc: 'TOU840801QW6',
+  name: 'Touch Company',
   taxRegimeCode: '601'
 }
 
@@ -125,7 +125,7 @@ var app = new Vue({
         <buz:AdditionalInformation>
           <buz:titulo>${additionalInformation.title}</buz:titulo>
           <buz:conector>${additionalInformation.connector}</buz:conector>
-          <buz:fileType>${credentials.fileType}</buz:fileType>
+          <buz:fileType>${additionalInformation.fileType}</buz:fileType>
           <buz:idUnico>${additionalInformation.uniqueId}</buz:idUnico>
           <buz:comentario>${additionalInformation.comment}</buz:comentario>
         </buz:AdditionalInformation>
@@ -196,7 +196,9 @@ var app = new Vue({
 </soapenv:Envelope>
       `;
       return xml;
-    }
+    },
+
+
 /*******************************************************************************/
 //        END OF XML
 /*******************************************************************************/
